@@ -1,6 +1,3 @@
-Here’s a sample `README.md` for starting up your backend, along with the `.env` file format:
-
----
 
 # Mindmaze Backend
 
