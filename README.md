@@ -63,7 +63,10 @@ npm start
 
 The server will be available at `http://localhost:5000`.
 
-## Swagger docs available at `http://localhost:5000/api-docs`
+## API Docs 
+
+- Swagger docs available at `http://localhost:5000/api-docs`
+
 
 ## Troubleshooting
 
