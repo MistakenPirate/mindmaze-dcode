@@ -1,4 +1,14 @@
 {
+  "name": "mindmaze-backend",
+  "version": "1.0.0",
+  "description": "Mindmaze backend API",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node src/server.ts",
+    "dev": "ts-node-dev src/server.ts",
+    "build": "tsc",
+    "lint": "eslint ."
+  },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",
     "@types/cors": "^2.8.17",
