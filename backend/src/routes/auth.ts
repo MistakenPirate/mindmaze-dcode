@@ -6,6 +6,32 @@ import prisma from "../prisma";
 const router = Router();
 const SECRET = process.env.SECRET || "";
 
+/**
+ * @swagger
+ * /auth/register:
+ *   post:
+ *     summary: Register a new user
+ *     description: Creates a new user with a username and password.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               username:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *             required:
+ *               - username
+ *               - password
+ *     responses:
+ *       201:
+ *         description: User successfully registered
+ *       480:
+ *         description: Username already exists
+ */
 router.post("/register", async (req: Request, res: Response) => {
   const { username, password } = req.body;
   const hashedPassword = await bcrypt.hash(password, 10);
@@ -20,6 +46,41 @@ router.post("/register", async (req: Request, res: Response) => {
   }
 });
 
+/**
+ * @swagger
+ * /auth/login:
+ *   post:
+ *     summary: Login an existing user
+ *     description: Authenticates a user and returns a JWT token if the credentials are correct.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               username:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *             required:
+ *               - username
+ *               - password
+ *     responses:
+ *       200:
+ *         description: Login successful with JWT token
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 token:
+ *                   type: string
+ *       401:
+ *         description: Invalid username or password
+ *       500:
+ *         description: An unexpected error occurred
+ */
 router.post("/login", async (req: Request, res: Response): Promise<void> => {
   const { username, password } = req.body;
 
